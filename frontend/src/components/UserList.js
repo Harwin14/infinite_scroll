@@ -25,7 +25,7 @@ const UserList = () => {
         setHasMore(response.data.hasMore);
     };
 
-    const fetchMore = () => {
+    const fetchMore = () => { 
         console.log('wkwkwk'); //belum
         setLastId(tempId);
     };
