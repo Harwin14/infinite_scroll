@@ -27,7 +27,7 @@ const UserList = () => {
 
     const fetchMore = () => { 
         console.log('wkwkwk'); //belum
-        setLastId(tempId); 
+        setLastId(tempId);   
     };
     return (
         <div className="container mt-5">
