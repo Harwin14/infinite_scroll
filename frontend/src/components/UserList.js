@@ -5,9 +5,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const UserList = () => {
     const [users, setUsers] = useState([]);
     const [lastId, setLastId] = useState(0);
-    const [limit, setLimit] = useState(20);
     const [tempId, setTempId] = useState(0);
+    const [limit, setLimit] = useState(20);
     const [keyword, setKeyword] = useState("");
+    const [query, setQuery] = useState("");
     const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
@@ -18,28 +19,36 @@ const UserList = () => {
         const response = await axios.get(
             `http://localhost:5000/users?search_query=${keyword}&lastId=${lastId}&limit=${limit}`
         );
-        console.log(response);
+        console.log(response.data);
         const newUsers = response.data.result;
         setUsers([...users, ...newUsers]);
         setTempId(response.data.lastId);
         setHasMore(response.data.hasMore);
     };
 
-    const fetchMore = () => { 
-        console.log('wkwkwk'); //belum
-        setLastId(tempId);    
+    const fetchMore = () => {
+        setLastId(tempId);
+    };
+
+    const searchData = (e) => {
+        e.preventDefault();
+        setLastId(0);
+        setUsers([]);
+        setKeyword(query);
     };
     return (
         <div className="container mt-5">
             <div className="columns">
                 <div className="column is-centered">
-                    <form>
+                    <form onSubmit={searchData}>
                         <div className="field has-addons">
                             <div className="control is-expanded">
                                 <input
                                     type="text"
                                     className="input"
                                     placeholder="Find something here..."
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)}
                                 />
                             </div>
                             <div className="control">

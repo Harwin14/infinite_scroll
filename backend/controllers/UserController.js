@@ -1,4 +1,3 @@
-import e from "express";
 import User from "../models/UserModel.js";
 import { Op } from "sequelize";
 
@@ -51,10 +50,10 @@ export const getUsers = async (req, res) => {
             order: [["id", "DESC"]],
         });
         result = results;
-    } 
+    }
     res.json({
         result,
-        last_id: result.length ? result[result.length -1].id : 0,
-        hasMore: result.length >= limit ? true :false
-    })
+        lastId: result.length ? result[result.length -1].id : 0,
+        hasMore: result.length >= limit ? true : false,
+    });
 };
