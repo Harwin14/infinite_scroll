@@ -22,7 +22,7 @@ const UserList = () => {
         console.log(response.data);
         const newUsers = response.data.result;
         setUsers([...users, ...newUsers]);
-        setTempId(response.data.lastId);
+        setTempId(response.data.lastId); 
         setHasMore(response.data.hasMore);
     };
 
