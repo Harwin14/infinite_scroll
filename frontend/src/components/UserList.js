@@ -23,8 +23,8 @@ const UserList = () => {
         const newUsers = response.data.result;
         setUsers([...users, ...newUsers]);
         setTempId(response.data.lastId); 
-        setHasMore(response.data.hasMore);
-    };
+        setHasMore(response.data.hasMore); 
+    }; 
 
     const fetchMore = () => {
         setLastId(tempId);
